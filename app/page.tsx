@@ -1,192 +1,256 @@
+import BookingSection from './components/BookingSection';
+import ClassesSection from './components/ClassesSection';
+import MobileBottomNav from './components/MobileBottomNav';
+import Image from 'next/image';
+import Link from 'next/link';
+
 const mapsUrl =
   'https://www.google.com/maps/place/Padel+Club+Constituci%C3%B3n/@-35.3257861,-72.3890019,16z/data=!4m16!1m7!3m6!1s0x96665f3ae3c55b31:0xa907f4908e75a3c2!2sQuivolgo+Padel!8m2!3d-35.3250205!4d-72.3863049!16s%2Fg%2F11s43320k9!3m7!1s0x96665f08a7a7dffb:0xb3ce5b950fc1766!8m2!3d-35.325771!4d-72.385773!9m1!1b1!16s%2Fg%2F11trx3wt8s?entry=ttu';
 
-const whatsappUrl =
-  'https://wa.me/56977333908?text=Hola%20Padel%20Club%20Constituci%C3%B3n%2C%20quiero%20reservar%20una%20cancha.';
+const instagramUrl = 'https://www.instagram.com/padelclubconstitucion';
+const whatsappBase = 'https://wa.me/56977333908';
+const bookingWhatsapp = `${whatsappBase}?text=${encodeURIComponent('Hola Padel Club Constitucion, quiero reservar una cancha.')}`;
 
-const courts = [
-  { name: 'Cancha 1', image: '/court-1.png', detail: 'Iluminacion nocturna' },
-  { name: 'Cancha 2', image: '/court-2.png', detail: 'Superficie profesional' },
-  { name: 'Cancha 3', image: '/court-3.png', detail: 'Juego por hora' },
-  { name: 'Cancha 4', image: '/court-4.png', detail: 'Prontamente techada' },
-];
-
-const classPacks = [
-  { title: 'Clase individual', price: '$16.000', note: 'Entrenamiento tecnico personalizado' },
-  { title: 'Pack 4 clases', price: '$56.000', note: 'Constancia semanal para subir nivel' },
-  { title: 'Pack 8 clases', price: '$100.000', note: 'Plan mensual con seguimiento' },
+const galleryImages = [
+  { label: 'Vista aerea', image: '/club-aerial-grid.png', alt: 'Vista aerea de las cuatro canchas de Padel Club Constitucion' },
+  { label: 'Canchas', image: '/club-night-wide.png', alt: 'Canchas iluminadas de Padel Club Constitucion durante la noche' },
+  { label: 'Juego nocturno', image: '/club-net-night.png', alt: 'Cancha de padel iluminada vista desde la red' },
+  { label: 'Instalaciones', image: '/club-canopy-night.png', alt: 'Canchas del club con toldo superior durante la noche' },
 ];
 
 export default function Home() {
+  const year = new Date().getFullYear();
+
   return (
     <main>
       <header className="site-header">
         <a className="brand" href="#inicio" aria-label="Padel Club Constitucion">
-          <img src="/logo-padel-club.png" alt="" />
-          <span>Padel Club Constitucion</span>
+          <Image src="/logo-padel-club.png" alt="" width={100} height={100} />
+          <span>Padel Club Constituci&oacute;n</span>
         </a>
+
         <nav className="nav-links" aria-label="Secciones principales">
+          <a href="#inicio">Inicio</a>
+          <a href="#reservar">Reservar</a>
           <a href="#canchas">Canchas</a>
           <a href="#clases">Clases</a>
-          <a href="#torneos">Torneos</a>
+          <a href="#comunidad">Comunidad</a>
           <a href="#contacto">Contacto</a>
         </nav>
-        <a className="header-cta" href={whatsappUrl} target="_blank" rel="noreferrer">
-          Reservar por WhatsApp
-        </a>
+
+        <div className="header-actions">
+          <span className="header-safe">
+            <i className="bi bi-shield-check" aria-hidden="true" />
+            Tus datos est&aacute;n protegidos
+          </span>
+          <Link className="header-reservations" href="/confirmacion">
+            <i className="bi bi-calendar-event" aria-hidden="true" />
+            Mis reservas
+          </Link>
+          <a className="header-cta" href="#reservar">
+            Reservar cancha
+          </a>
+        </div>
+
+        <details className="mobile-menu">
+          <summary aria-label="Abrir menu">
+            <i className="bi bi-list" aria-hidden="true" />
+          </summary>
+          <nav aria-label="Menu movil">
+            <a href="#inicio">Inicio</a>
+            <a href="#reservar">Reservar</a>
+            <a href="#canchas">Canchas</a>
+            <a href="#clases">Clases</a>
+            <a href="#comunidad">Comunidad</a>
+            <a href="#contacto">Contacto</a>
+          </nav>
+        </details>
       </header>
 
+      <MobileBottomNav />
+
       <section id="inicio" className="hero">
-        <img className="hero-bg" src="/hero-court.png" alt="Canchas de padel iluminadas de noche" />
+        <Image
+          className="hero-bg"
+          src="/club-aerial-main.png"
+          alt="Vista aerea real de las canchas de Padel Club Constitucion"
+          fill
+          priority
+          sizes="100vw"
+        />
         <div className="hero-shade" />
         <div className="hero-content">
-          <p className="eyebrow">Club deportivo en Quivolgo, Constitucion</p>
+          <p className="eyebrow">Padel Club Constituci&oacute;n</p>
           <h1>
-            Padel Club
-            <span>Constitucion</span>
+            Tu cancha.
+            <span>Tu partido.</span>
+            <span>Tu club.</span>
           </h1>
           <p className="hero-copy">
-            4 canchas profesionales de padel, clases para todos los niveles y una comunidad
-            activa para jugar, entrenar y competir cerca del rio Maule.
+            4 canchas de p&aacute;del en Constituci&oacute;n para jugar, entrenar y competir.
           </p>
           <div className="hero-actions">
-            <a className="primary-btn" href={whatsappUrl} target="_blank" rel="noreferrer">
+            <a className="primary-btn" href="#reservar">
               Reservar cancha
             </a>
-            <a className="secondary-btn" href="#clases">
-              Ver clases
+            <a className="secondary-btn" href="#canchas">
+              Conocer el club
+            </a>
+          </div>
+          <dl className="hero-facts" aria-label="Datos del club">
+            <div>
+              <dt>4</dt>
+              <dd>canchas</dd>
+            </div>
+            <div>
+              <dt>Todos los d&iacute;as</dt>
+              <dd>abierto</dd>
+            </div>
+            <div>
+              <dt>10:00 - 23:00</dt>
+              <dd>hrs</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <BookingSection />
+
+      <section id="canchas" className="club-section">
+        <div className="club-copy">
+          <p className="eyebrow">Conoce el club</p>
+          <h2>Un espacio hecho para jugar</h2>
+          <p>
+            Cuatro canchas, iluminaci&oacute;n para disfrutar cada partido y un ambiente pensado para
+            vivir el p&aacute;del en Constituci&oacute;n.
+          </p>
+        </div>
+        <div className="club-gallery">
+          <figure className="gallery-main">
+            <Image
+              src="/club-aerial-grid.png"
+              alt="Vista aerea de las cuatro canchas del club"
+              fill
+              sizes="(max-width: 1040px) 100vw, 60vw"
+            />
+            <figcaption>Vista a&eacute;rea</figcaption>
+          </figure>
+          <div className="gallery-side">
+            {galleryImages.slice(1).map((item) => (
+              <figure key={item.label}>
+                <Image src={item.image} alt={item.alt} fill sizes="(max-width: 1040px) 100vw, 36vw" />
+                <figcaption>{item.label}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <ClassesSection />
+
+      <section id="comunidad" className="community-section">
+        <div className="community-photo">
+          <Image
+            src="/club-sign-day.png"
+            alt="Cartel de Padel Club Constitucion durante el dia"
+            width={1033}
+            height={1485}
+            sizes="(max-width: 1040px) 100vw, 44vw"
+          />
+        </div>
+        <div className="community-copy">
+          <p className="eyebrow">Comunidad</p>
+          <h2>El p&aacute;del tambi&eacute;n se vive fuera del partido</h2>
+          <p>Torneos, encuentros y actividades del club en un solo lugar.</p>
+          <article className="empty-event">
+            <span>Pr&oacute;ximos eventos</span>
+            <p>Muy pronto podr&aacute;s revisar aqu&iacute; fechas, categor&iacute;as e inscripciones.</p>
+          </article>
+          <a className="secondary-btn" href={instagramUrl} target="_blank" rel="noreferrer">
+            Ver novedades en Instagram
+          </a>
+        </div>
+      </section>
+
+      <section id="contacto" className="location-section">
+        <div className="location-copy">
+          <p className="eyebrow">Ubicaci&oacute;n y contacto</p>
+          <h2>Encu&eacute;ntranos en Constituci&oacute;n</h2>
+          <div className="contact-list">
+            <p>
+              <strong>Padel Club Constituci&oacute;n</strong>
+              Constituci&oacute;n, Regi&oacute;n del Maule
+            </p>
+            <p>
+              <strong>Todos los d&iacute;as</strong>
+              10:00 - 23:00 hrs
+            </p>
+            <p>
+              <strong>+56 9 7733 3908</strong>
+              @padelclubconstitucion
+            </p>
+          </div>
+          <div className="contact-buttons">
+            <a className="primary-btn" href={mapsUrl} target="_blank" rel="noreferrer">
+              C&oacute;mo llegar
+            </a>
+            <a className="secondary-btn" href={bookingWhatsapp} target="_blank" rel="noreferrer">
+              WhatsApp
+            </a>
+            <a className="secondary-btn" href={instagramUrl} target="_blank" rel="noreferrer">
+              Instagram
             </a>
           </div>
         </div>
-        <div className="hero-badge" aria-label="Proximamente canchas techadas">
-          <strong>Prontamente</strong>
-          <span>canchas techadas</span>
-        </div>
+        <a className="map-panel" href={mapsUrl} target="_blank" rel="noreferrer" aria-label="Abrir ubicacion en Google Maps">
+          <Image
+            src="/club-aerial-main.png"
+            alt="Vista aerea del recinto de Padel Club Constitucion"
+            fill
+            sizes="(max-width: 1040px) 100vw, 50vw"
+          />
+          <span>Ver en Google Maps</span>
+        </a>
       </section>
 
-      <section className="info-strip" aria-label="Datos rapidos del club">
-        <article>
-          <span>Horario</span>
-          <strong>Todos los dias</strong>
-          <p>10:00 a 23:00 hrs</p>
-        </article>
-        <article>
-          <span>Ubicacion</span>
-          <strong>Quivolgo</strong>
-          <a href={mapsUrl} target="_blank" rel="noreferrer">
-            Ver en Google Maps
-          </a>
-        </article>
-        <article>
-          <span>Contacto</span>
-          <strong>+56 9 7733 3908</strong>
-          <p>DM o WhatsApp</p>
-        </article>
-        <article>
-          <span>Instagram</span>
-          <strong>@padelclubconstitucion</strong>
-          <a href="https://www.instagram.com/padelclubconstitucion" target="_blank" rel="noreferrer">
-            Ir al perfil
-          </a>
-        </article>
-      </section>
-
-      <section id="canchas" className="section courts-section">
-        <div className="section-heading">
-          <p className="eyebrow">Instalaciones</p>
-          <h2>Nuestras canchas</h2>
-          <p>
-            Una vitrina directa para mostrar disponibilidad, fotos por cancha y llamados a
-            reserva sin que el jugador tenga que buscar informacion.
-          </p>
-        </div>
-        <div className="court-grid">
-          {courts.map((court) => (
-            <article className="court-card" key={court.name}>
-              <img src={court.image} alt={`${court.name} de Padel Club Constitucion`} />
-              <div>
-                <strong>{court.name}</strong>
-                <span>{court.detail}</span>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="clases" className="split-section">
-        <div className="class-visual">
-          <img src="/clases-padel.png" alt="Afiche de entrenamiento de padel" />
-        </div>
-        <div className="class-content">
-          <p className="eyebrow">Entrenamientos</p>
-          <h2>Lleva tu padel al siguiente nivel</h2>
-          <p>
-            Clases personalizadas con Gonzalo Rodriguez para principiantes, jugadores
-            intermedios y quienes buscan competir con mas confianza.
-          </p>
-          <div className="pricing-list">
-            {classPacks.map((pack) => (
-              <article key={pack.title}>
-                <div>
-                  <strong>{pack.title}</strong>
-                  <span>{pack.note}</span>
-                </div>
-                <b>{pack.price}</b>
-              </article>
-            ))}
-          </div>
-          <a className="primary-btn wide" href={whatsappUrl} target="_blank" rel="noreferrer">
-            Consultar disponibilidad
-          </a>
-        </div>
-      </section>
-
-      <section id="torneos" className="section tournaments">
-        <div className="section-heading">
-          <p className="eyebrow">Comunidad</p>
-          <h2>Torneos, ligas y eventos</h2>
-          <p>
-            La web puede funcionar como punto oficial para publicar cuadros, inscripciones,
-            fechas y resultados del club.
-          </p>
-        </div>
-        <div className="event-row">
-          <article>
-            <span>Americano mixto</span>
-            <strong>Sabado 18:00 hrs</strong>
-            <p>Cupos limitados por categoria.</p>
-          </article>
-          <article>
-            <span>Ranking interno</span>
-            <strong>Temporada mensual</strong>
-            <p>Tabla visible para socios y jugadores frecuentes.</p>
-          </article>
-          <article>
-            <span>Escuela formativa</span>
-            <strong>Niños y adultos</strong>
-            <p>Bloques horarios para nuevos jugadores.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="contacto" className="contact-section">
+      <section className="final-cta">
+        <Image
+          src="/club-night-angle.png"
+          alt="Cancha iluminada de Padel Club Constitucion"
+          fill
+          sizes="100vw"
+        />
         <div>
-          <p className="eyebrow">Reserva facil</p>
-          <h2>Todo listo para jugar en Constitucion</h2>
-          <p>
-            Una pagina asi permite centralizar reservas, precios, fotos, ubicacion y redes
-            sociales en un solo enlace profesional para Instagram y WhatsApp.
-          </p>
-        </div>
-        <div className="contact-actions">
-          <a className="primary-btn" href={whatsappUrl} target="_blank" rel="noreferrer">
-            Escribir por WhatsApp
-          </a>
-          <a className="secondary-btn dark" href={mapsUrl} target="_blank" rel="noreferrer">
-            Como llegar
-          </a>
+          <h2>&iquest;Jugamos?</h2>
+          <p>Revisa los horarios disponibles y reserva tu pr&oacute;xima cancha.</p>
+          <div className="hero-actions">
+            <a className="primary-btn" href="#reservar">
+              Ver disponibilidad
+            </a>
+            <a className="secondary-btn" href={bookingWhatsapp} target="_blank" rel="noreferrer">
+              WhatsApp
+            </a>
+          </div>
         </div>
       </section>
+
+      <footer className="site-footer">
+        <a className="brand" href="#inicio" aria-label="Volver al inicio">
+          <Image src="/logo-padel-club.png" alt="" width={100} height={100} />
+          <span>Padel Club Constituci&oacute;n</span>
+        </a>
+        <p>
+          Padel Club Constituci&oacute;n
+          <br />
+          Constituci&oacute;n, Regi&oacute;n del Maule
+        </p>
+        <nav aria-label="Enlaces de contacto">
+          <a href={instagramUrl} target="_blank" rel="noreferrer">Instagram</a>
+          <a href={bookingWhatsapp} target="_blank" rel="noreferrer">WhatsApp</a>
+          <a href={mapsUrl} target="_blank" rel="noreferrer">Google Maps</a>
+        </nav>
+        <small>&copy; {year} Padel Club Constituci&oacute;n.</small>
+      </footer>
     </main>
   );
 }

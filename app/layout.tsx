@@ -1,14 +1,15 @@
 import type { Metadata } from 'next';
+import MotionEnhancer from './components/MotionEnhancer';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Padel Club Constitucion',
+  title: 'Padel Club Constitución',
   description:
-    'Canchas profesionales de padel, clases, torneos y reservas en Quivolgo, Constitucion.',
+    '4 canchas de pádel, clases particulares y reservas en Constitución, Región del Maule.',
   openGraph: {
-    title: 'Padel Club Constitucion',
+    title: 'Padel Club Constitución',
     description:
-      '4 canchas profesionales, clases para todos los niveles y reservas por WhatsApp en Quivolgo.',
+      '4 canchas de pádel, clases particulares y reservas por WhatsApp en Constitución.',
     images: ['/logo-padel-club.png'],
   },
 };
@@ -20,7 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body>{children}</body>
+      <body>
+        <MotionEnhancer />
+        {children}
+      </body>
     </html>
   );
 }

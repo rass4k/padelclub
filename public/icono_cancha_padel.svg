@@ -1,0 +1,22 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Contorno de la cancha -->
+    <rect x="48" y="24" width="160" height="208" rx="8"/>
+
+    <!-- Red central -->
+    <line x1="48" y1="128" x2="208" y2="128"/>
+
+    <!-- Líneas de servicio -->
+    <line x1="48" y1="88" x2="208" y2="88"/>
+    <line x1="48" y1="168" x2="208" y2="168"/>
+
+    <!-- División central de áreas de saque -->
+    <line x1="128" y1="88" x2="128" y2="168"/>
+
+    <!-- Indicación sutil de cristales laterales -->
+    <line x1="64" y1="40" x2="64" y2="72" opacity="0.45"/>
+    <line x1="192" y1="40" x2="192" y2="72" opacity="0.45"/>
+    <line x1="64" y1="184" x2="64" y2="216" opacity="0.45"/>
+    <line x1="192" y1="184" x2="192" y2="216" opacity="0.45"/>
+  </g>
+</svg>
