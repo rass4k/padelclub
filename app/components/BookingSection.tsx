@@ -323,12 +323,14 @@ export default function BookingSection() {
             </button>
 
             <div className="important-card">
-              <strong>Importante</strong>
-              <p>
-                Presenta tu reserva el d&iacute;a de tu juego. Si necesitas cancelar o reprogramar,
-                hazlo con <b>al menos 2 horas</b> de anticipaci&oacute;n.
-              </p>
               <span className="info-icon" aria-hidden="true"><i className="bi bi-info-lg" /></span>
+              <div className="important-card-content">
+                <strong>Importante</strong>
+                <p>
+                  Presenta tu reserva el d&iacute;a de tu juego. Si necesitas cancelar o reprogramar,
+                  hazlo con <b>al menos 2 horas</b> de anticipaci&oacute;n.
+                </p>
+              </div>
             </div>
 
             <button className="return-home-btn" onClick={returnHome} type="button">

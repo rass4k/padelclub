@@ -2121,20 +2121,23 @@ h2 {
 }
 
 .important-card {
-  align-items: center;
-  display: grid;
-  gap: 10px 22px;
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: flex;
+  gap: 16px;
   grid-area: important;
-  grid-template-columns: 54px 1fr;
   margin-top: 0;
-  padding: 22px;
-  position: relative;
+  padding: 20px 22px;
 }
 
 .important-card strong {
   color: var(--lime);
   display: block;
-  font-size: 22px;
+  font-size: 20px;
+  line-height: 1.2;
+  margin-bottom: 6px;
 }
 
 .important-card b {
@@ -2142,8 +2145,17 @@ h2 {
 }
 
 .important-card .info-icon {
-  grid-row: span 2;
+  align-items: center;
+  border: 1px solid var(--lime);
+  border-radius: 50%;
+  color: var(--lime);
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: 20px;
+  height: 42px;
+  justify-content: center;
   position: static;
+  width: 42px;
 }
 
 .important-card .info-icon::before {
@@ -3696,9 +3708,10 @@ figcaption {
   }
 
   .important-card {
-    display: block;
+    display: flex;
+    gap: 12px;
     margin-top: 14px;
-    padding: 14px 46px 14px 14px;
+    padding: 14px;
   }
 
   .important-card strong {
@@ -3706,9 +3719,10 @@ figcaption {
   }
 
   .important-card .info-icon {
-    position: absolute;
-    right: 14px;
-    top: 14px;
+    font-size: 18px;
+    height: 36px;
+    position: static;
+    width: 36px;
   }
 
   .important-card p {
