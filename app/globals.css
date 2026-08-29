@@ -2511,7 +2511,7 @@ figcaption {
 
 .location-section {
   align-items: stretch;
-  background: var(--white);
+  background: var(--paper);
   color: var(--ink);
   display: grid;
   gap: 28px;
