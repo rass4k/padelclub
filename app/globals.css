@@ -2296,10 +2296,10 @@ figcaption {
 }
 
 .classes-photo img {
-  aspect-ratio: 1194 / 1518;
   border-radius: 8px;
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
+  height: auto;
 }
 
 .classes-content {
