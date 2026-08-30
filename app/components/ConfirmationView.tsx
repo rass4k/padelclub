@@ -24,7 +24,7 @@ const fallbackReservation: StoredReservation = {
   fullDate: 'Jueves 28 de agosto',
   hour: '20:00',
   endHour: '21:00',
-  name: 'Rodrigo Tomas Cancino',
+  name: 'Juan Pérez González',
   rut: '12.345.678-5',
   phone: '+56 9 1234 5678',
 };

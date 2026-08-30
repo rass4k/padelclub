@@ -375,7 +375,7 @@ export default function BookingSection() {
           </button>
           <a className="booking-user-pill" href="#reservar">
             <i className="bi bi-person-circle" aria-hidden="true" />
-            Hola, Rodrigo
+            Hola, Juan
             <i className="bi bi-chevron-down" aria-hidden="true" />
           </a>
         </div>
@@ -605,7 +605,7 @@ export default function BookingSection() {
                   <input
                     autoComplete="name"
                     onChange={(event) => setName(event.target.value)}
-                    placeholder="Ej: Rodrigo Tomas Cancino"
+                    placeholder="Ejemplo: Juan Pérez González"
                     value={name}
                   />
                 </span>
