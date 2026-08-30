@@ -70,6 +70,12 @@ function getReservedSlots(dayIndex: number) {
   return new Set(reservedByDay[dayIndex] ?? []);
 }
 
+function getSantiagoDate() {
+  const now = new Date();
+  const santiagoStr = now.toLocaleString('en-US', { timeZone: 'America/Santiago' });
+  return new Date(santiagoStr);
+}
+
 export default function BookingSection() {
   const [dayIndex, setDayIndex] = useState(0);
   const [activeCourt, setActiveCourt] = useState<CourtNumber>(3);
@@ -82,7 +88,7 @@ export default function BookingSection() {
   const [confirmedReservation, setConfirmedReservation] = useState<ConfirmedReservation | null>(null);
 
   const days = useMemo<BookingDay[]>(() => {
-    const today = new Date();
+    const today = getSantiagoDate();
     return Array.from({ length: 4 }, (_, index) => {
       const date = addDays(today, index);
       return {
@@ -363,7 +369,6 @@ export default function BookingSection() {
         </a>
         <nav className="booking-desktop-nav" aria-label="Navegaci&oacute;n de reservas">
           <a className="active" href="#reservar">Reservas</a>
-          <a href="#reservar">Mis reservas</a>
           <a href="#clases">Tarifas</a>
           <a href="#comunidad">Club</a>
           <a href="#contacto">Contacto</a>
@@ -373,11 +378,6 @@ export default function BookingSection() {
             <i className="bi bi-bell" aria-hidden="true" />
             <span aria-hidden="true" />
           </button>
-          <a className="booking-user-pill" href="#reservar">
-            <i className="bi bi-person-circle" aria-hidden="true" />
-            Hola, Juan
-            <i className="bi bi-chevron-down" aria-hidden="true" />
-          </a>
         </div>
       </div>
 
@@ -420,7 +420,7 @@ export default function BookingSection() {
           </button>
         </div>
 
-        <p className="demo-note">Disponibilidad demostrativa hasta conectar el sistema real de reservas.</p>
+        <p className="demo-note">Disponibilidad demostrativa.</p>
 
         <div className="mobile-reserve-flow">
           <div className="mobile-status-legend" aria-label="Leyenda de disponibilidad">
@@ -460,48 +460,6 @@ export default function BookingSection() {
                 })}
               </div>
             ))}
-          </div>
-
-          <p className="mobile-update-note">Los horarios se actualizan en tiempo real.</p>
-        </div>
-
-        <div className="booking-picker">
-          <div className="court-picker-panel">
-            <div className="picker-heading">
-              <span>1. Selecciona una cancha</span>
-              <p>El mapa muestra la distribuci&oacute;n de las 4 canchas del club.</p>
-            </div>
-            <CourtSelector selectedCourt={activeCourt} onSelect={selectCourt} />
-          </div>
-
-          <div className="time-picker-panel">
-            <div className="picker-heading">
-              <span>2. Elige un horario</span>
-              <p>
-                {selectedCourt} tiene {availableSlots} horarios disponibles para {selectedFullDate}.
-              </p>
-            </div>
-            <div className="mobile-hour-list" aria-label={`Horarios disponibles para ${selectedCourt}`}>
-              {bookingHours.map((hour) => {
-                const slotKey = `${hour}-${selectedCourt}`;
-                const isReserved = reservedSlots.has(slotKey);
-                const isSelected = slotKey === selectedSlotKey;
-
-                return (
-                  <button
-                    aria-pressed={isSelected}
-                    className={`mobile-hour ${isReserved ? 'reserved' : 'available'} ${isSelected ? 'selected' : ''}`}
-                    disabled={isReserved}
-                    key={slotKey}
-                    onClick={() => selectSlot(hour)}
-                    type="button"
-                  >
-                    <time>{hour}</time>
-                    <span>{isReserved ? 'Reservada' : 'Disponible'}</span>
-                  </button>
-                );
-              })}
-            </div>
           </div>
         </div>
 

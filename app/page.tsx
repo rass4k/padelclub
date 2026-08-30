@@ -41,12 +41,8 @@ export default function Home() {
         <div className="header-actions">
           <span className="header-safe">
             <i className="bi bi-shield-check" aria-hidden="true" />
-            Tus datos est&aacute;n protegidos
+            Tus datos se utilizar&aacute;n &uacute;nicamente para gestionar la reserva
           </span>
-          <Link className="header-reservations" href="/confirmacion">
-            <i className="bi bi-calendar-event" aria-hidden="true" />
-            Mis reservas
-          </Link>
           <a className="header-cta" href="#reservar">
             Reservar cancha
           </a>
